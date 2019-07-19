@@ -57,7 +57,7 @@ final class DoNotUse: UITableViewController {
   
   @objc func dismissBtnDidTap(_ sneder: UIButton) {
     print("get token")
-    APICenter.shared.login(id: "IOS권혁태", pw: "1234") {
+    APICenter.shared.login(id: "KHT@naver.com", pw: "1234") {
       switch $0 {
       case .success(_):
         print("Login Success!!!")

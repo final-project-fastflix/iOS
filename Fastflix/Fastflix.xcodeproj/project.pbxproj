@@ -12,7 +12,6 @@
 		47FF9DC522DE3C98005C7BAD /* DetailViewBelowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FF9DC422DE3C98005C7BAD /* DetailViewBelowCell.swift */; };
 		47FF9DC722DE3CC4005C7BAD /* DetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FF9DC622DE3CC4005C7BAD /* DetailCollectionViewCell.swift */; };
 		4D80BA9E4F9865588E244065 /* Pods_Fastflix.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E29600FEE1EEB7B6DD9E0171 /* Pods_Fastflix.framework */; };
-		52542D7122E0E448002F999D /* DataForAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52542D7022E0E448002F999D /* DataForAPI.swift */; };
 		5295214E22D5D3E800174BC1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5295214D22D5D3E800174BC1 /* AppDelegate.swift */; };
 		5295215522D5D3E900174BC1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5295215422D5D3E900174BC1 /* Assets.xcassets */; };
 		5295216522D5D57F00174BC1 /* DataOfTass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5295216422D5D57F00174BC1 /* DataOfTass.swift */; };
@@ -34,6 +33,7 @@
 		C143560A22DCAAD5005189E9 /* OriginalTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C143560922DCAAD5005189E9 /* OriginalTableCell.swift */; };
 		C143560C22DCD16E005189E9 /* DoNotUse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C143560B22DCD16E005189E9 /* DoNotUse.swift */; };
 		C1CA09C422E0A087009B1296 /* SeeMoreVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CA09C322E0A087009B1296 /* SeeMoreVC.swift */; };
+		C1CA09C622E17130009B1296 /* DataForAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CA09C522E17130009B1296 /* DataForAPI.swift */; };
 		C1E21BE622DF1BB400930115 /* LaunchScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E21BE522DF1BB300930115 /* LaunchScreenVC.swift */; };
 /* End PBXBuildFile section */
 
@@ -44,7 +44,6 @@
 		47FF9DC222DE3C51005C7BAD /* DetailViewUpperCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewUpperCell.swift; sourceTree = "<group>"; };
 		47FF9DC422DE3C98005C7BAD /* DetailViewBelowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewBelowCell.swift; sourceTree = "<group>"; };
 		47FF9DC622DE3CC4005C7BAD /* DetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCollectionViewCell.swift; sourceTree = "<group>"; };
-		52542D7022E0E448002F999D /* DataForAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DataForAPI.swift; path = ../../../../../../../../System/Volumes/Data/Users/tass/tass/TeamProject/iOS/Fastflix/Fastflix/Data/DataForAPI.swift; sourceTree = "<group>"; };
 		5295214A22D5D3E800174BC1 /* Fastflix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fastflix.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5295214D22D5D3E800174BC1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5295215422D5D3E900174BC1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -69,6 +68,7 @@
 		C143560B22DCD16E005189E9 /* DoNotUse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoNotUse.swift; sourceTree = "<group>"; };
 		C143561B22DE1D9B005189E9 /* LaunchScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenVC.swift; sourceTree = "<group>"; };
 		C1CA09C322E0A087009B1296 /* SeeMoreVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeMoreVC.swift; sourceTree = "<group>"; };
+		C1CA09C522E17130009B1296 /* DataForAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataForAPI.swift; sourceTree = "<group>"; };
 		C1E21BE522DF1BB300930115 /* LaunchScreenVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchScreenVC.swift; sourceTree = "<group>"; };
 		E29600FEE1EEB7B6DD9E0171 /* Pods_Fastflix.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fastflix.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -174,7 +174,7 @@
 				5295216422D5D57F00174BC1 /* DataOfTass.swift */,
 				5295216622D5D59100174BC1 /* DataOfDevy.swift */,
 				5295216822D5D59A00174BC1 /* DataOfAllen.swift */,
-				52542D7022E0E448002F999D /* DataForAPI.swift */,
+				C1CA09C522E17130009B1296 /* DataForAPI.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -321,6 +321,7 @@
 				C14355F822DB0E22005189E9 /* MainImageTableCell.swift in Sources */,
 				C143560C22DCD16E005189E9 /* DoNotUse.swift in Sources */,
 				47FF9DC322DE3C51005C7BAD /* DetailViewUpperCell.swift in Sources */,
+				C1CA09C622E17130009B1296 /* DataForAPI.swift in Sources */,
 				C143560822DCAA98005189E9 /* OriginalCollectionCell.swift in Sources */,
 				5295216B22D5D5E600174BC1 /* HomeVC.swift in Sources */,
 				C1CA09C422E0A087009B1296 /* SeeMoreVC.swift in Sources */,
@@ -331,7 +332,6 @@
 				52BA343022DDE7EF005F8489 /* MainCell.swift in Sources */,
 				C1E21BE622DF1BB400930115 /* LaunchScreenVC.swift in Sources */,
 				47FF9DC722DE3CC4005C7BAD /* DetailCollectionViewCell.swift in Sources */,
-				52542D7122E0E448002F999D /* DataForAPI.swift in Sources */,
 				C143560222DC8D1C005189E9 /* Player.swift in Sources */,
 				5295216522D5D57F00174BC1 /* DataOfTass.swift in Sources */,
 				52BA342A22DDE513005F8489 /* MainTabBarController.swift in Sources */,

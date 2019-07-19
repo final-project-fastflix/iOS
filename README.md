@@ -28,3 +28,5 @@ teamMembers: 권혁태(tass), 홍원표(allen), 전혜지(devy)
 19.07.17  fix: tass - fix all AutoLayout
 
 19.07.19  feat: tass - simple login & logout
+
+19.07.20  feat: tass - login request done, with Alamofire

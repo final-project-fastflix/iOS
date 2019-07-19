@@ -25,6 +25,7 @@ final class LaunchScreenVC: UIViewController {
 //    UIView.animate(withDuration: 0.5) { [weak imageView = self.imageView] in
 //      imageView?.alpha = 1
 //    }
+    
     // 3초 뒤에 뷰 컨트롤러를 띄우는거
     Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
       let appDelegate =  UIApplication.shared.delegate as! AppDelegate

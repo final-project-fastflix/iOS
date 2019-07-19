@@ -12,11 +12,27 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
+  
+  static var instance: AppDelegate {
+    return (UIApplication.shared.delegate as! AppDelegate)
+  }
 
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-    // Override point for customization after application launch.
+    checkLogtinState()
     return true
+  }
+  
+  func checkLogtinState() {
+    let path = UserDefaults.standard
+    let token = path.string(forKey: "token")
+    let rootVC = token == nil ? BeforeLoginVC() : AfterLoginVC()
+    token == nil ? print("Logout") : print("Login")
+    window = UIWindow(frame: UIScreen.main.bounds)
+    window?.backgroundColor = .white
+    window?.rootViewController = rootVC
+    
+    window?.makeKeyAndVisible()
   }
 
   func applicationWillResignActive(_ application: UIApplication) {

@@ -12,7 +12,7 @@ import Foundation
 final class APICenter {
   static let shared = APICenter()
   
-  private let loginUrl = URL(string: "http://54.180.191.152/accounts/login/")!
+  private let loginUrl = URL(string: "http://54.180.191.152/accounts/login/")! 
   
   
   // MARK: - Login Method
@@ -23,11 +23,11 @@ final class APICenter {
     
     let parameters = [
       [
-        "name": "username",
+        "name": "id",
         "value": id
       ],
       [
-        "name": "password",
+        "name": "pw",
         "value": pw
       ]
     ]
@@ -59,6 +59,8 @@ final class APICenter {
     request.httpMethod = "POST"
     request.allHTTPHeaderFields = headers
     request.httpBody = body.data(using: .utf8)
+    
+    
     
     let session = URLSession.shared
     session.dataTask(with: request) { (data, res, err) in
