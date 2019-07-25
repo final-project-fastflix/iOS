@@ -56,7 +56,7 @@ final class DetailViewBelowCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         configure()
-        makeConstraints()
+        setupSNP()
         collectionViewSetup()
         
     }
@@ -70,7 +70,7 @@ final class DetailViewBelowCell: UITableViewCell {
         self.selectionStyle = .none
     }
     
-    private func makeConstraints() {
+    private func setupSNP() {
         [firstBlackLine, redLine, similarLabel, collectionView].forEach { contentView.addSubview($0) }
         
         firstBlackLine.snp.makeConstraints {

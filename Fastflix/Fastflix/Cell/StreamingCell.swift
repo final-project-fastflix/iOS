@@ -75,12 +75,9 @@ final class StreamingCell: UITableViewCell {
   private let playerVC = AVPlayerViewController()
   private var player: AVPlayer?
   
-  
-  
   private func setupPlayer(url: String) {
     player = AVPlayer(url: URL(string: url)!)
     playerVC.player = player
-    playerVC.player?.play()
     playerVC.player?.isMuted = true
     playerVC.showsPlaybackControls = false
     [muteBtn, degreeLabel].forEach { playerVC.view.bringSubviewToFront($0) }
@@ -106,10 +103,18 @@ final class StreamingCell: UITableViewCell {
   
   override func didMoveToSuperview() {
     super.didMoveToSuperview()
-    setupAutoLayout()
+    setupSNP()
   }
   
-  private func setupAutoLayout() {
+  func playVideo() {
+    playerVC.player?.play()
+  }
+  
+  func pauseVideo() {
+    playerVC.player?.pause()
+  }
+  
+  private func setupSNP() {
     
     [playerVC.view, titleLabel, stackView].forEach { addSubview($0) }
     [muteBtn, degreeLabel].forEach { playerVC.view.addSubview($0) }
@@ -144,18 +149,6 @@ final class StreamingCell: UITableViewCell {
       $0.leading.trailing.bottom.equalToSuperview()
       $0.top.equalTo(playerVC.view.snp.bottom).offset(10)
     }
-    
-//    playBtn.snp.makeConstraints {
-//      $0.leading.bottom.equalToSuperview().offset(10)
-//      $0.top.equalTo(playerVC.view.snp.bottom).offset(10)
-//      $0.trailing.equalTo(contentView.snp.centerX).offset(-5)
-//    }
-//
-//    pokeBtn.snp.makeConstraints {
-//      $0.leading.equalTo(contentView.snp.centerX).offset(5)
-//      $0.centerY.equalTo(playBtn)
-//      $0.trailing.equalToSuperview().offset(-10)
-//    }
   }
   
 }

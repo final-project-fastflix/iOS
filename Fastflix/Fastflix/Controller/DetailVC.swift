@@ -36,7 +36,7 @@ final class DetailVC: UITableViewController {
   }
   
   
-//  private func makeConstraints() {
+//  private func setupSNP() {
 //
 //    [dissmissButton].forEach { tableView.addSubview($0) }
 //

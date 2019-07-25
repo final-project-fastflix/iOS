@@ -40,7 +40,7 @@ final class PreviewTableCell: UITableViewCell {
     //collectionView register
     collectionView.register(PreviewCollectionCell.self, forCellWithReuseIdentifier: PreviewCollectionCell.identifier)
     addSubViews()
-    snpLayout()
+    setupSNP()
     collectionviewSetUp()
   }
   
@@ -64,7 +64,7 @@ final class PreviewTableCell: UITableViewCell {
     collectionView.showsHorizontalScrollIndicator = false
   }
   // MARK: - snpkitLayout
-  private func snpLayout() {
+  private func setupSNP() {
     collectionView.snp.makeConstraints {
       $0.leading.trailing.bottom.equalToSuperview()
       $0.height.equalTo(180)

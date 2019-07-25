@@ -222,7 +222,7 @@ final class DetailViewUpperCell: UITableViewCell {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
     
     configure()
-    makeConstraints()
+    setupSNP()
   }
   
   required init?(coder aDecoder: NSCoder) {
@@ -243,7 +243,7 @@ final class DetailViewUpperCell: UITableViewCell {
   }
   
   // 스냅킷 오토레이아웃
-  private func makeConstraints() {
+  private func setupSNP() {
     [backgroundBlurView, backgroundLayerView, mainImageView, imageBelowStackView, playButton, movieTimeStackView, movieDescriptionStackView, myPokedStackView, evaluationStackView, shareStackView, dissmissButton].forEach { contentView.addSubview($0) }
     
     let buttonWidth = (UIScreen.main.bounds.width - 20)/4

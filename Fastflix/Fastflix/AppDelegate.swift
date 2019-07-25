@@ -23,15 +23,29 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
   }
   
   func checkLoginState() {
-    let path = UserDefaults.standard
-    let token = path.string(forKey: "token")
-    let rootVC = token == nil ? DoNotUse() : MainTabBarController()
-    token == nil ? print("Logout") : print("Login")
+    
+    // 유저디폴트에 저장되어있는 "token"값 확인
+    let token = UserDefaults.standard.string(forKey: "token")
+    
+    
+    // 1) "token"없을때 안내화면 -> 로그인화면
+    let beforeLoginNavi = UINavigationController(rootViewController: BeforeLoginVC())
+//    beforeLoginNavi.viewControllers = []
+    
+    // 2) "token"값 있을때 (로그인없이)홈화면
+    let tabBar = MainTabBarController()
+    
+    
+    // "token"값 nil일때는 1)안내화면으로 / nil이 아닐때는 2) 홈화면으로
+    let rootVC = token == nil ? beforeLoginNavi : tabBar
+    
     window = UIWindow(frame: UIScreen.main.bounds)
     window?.backgroundColor = .clear
     window?.rootViewController = rootVC
     
     window?.makeKeyAndVisible()
+    
+    topPadding = rootVC.view.safeAreaInsets.top
   }
 
   func applicationWillResignActive(_ application: UIApplication) {

@@ -53,15 +53,18 @@ final class PreViewPlayerVC: UIViewController {
     super.viewDidLoad()
     view.addSubview(dismissBtn)
     view.backgroundColor = .clear
-    snpLayout()
-    
+  }
+  
+  override func viewDidDisappear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    setupSNP()
   }
   
   @objc func dismissBtnDidTap(_ sender: UIButton) {
     delegate?.finishVideo()
   }
   
-  private func snpLayout() {
+  private func setupSNP() {
     dismissBtn.snp.makeConstraints {
       $0.top.equalTo(50)
       $0.centerX.equalToSuperview()

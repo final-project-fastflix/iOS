@@ -37,7 +37,7 @@ final class OriginalTableCell: UITableViewCell {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
     self.backgroundColor = .clear
     addSubViews()
-    snpLayout()
+    setupSNP()
     collectionviewSetUp()
     collectionView.register(OriginalCollectionCell.self, forCellWithReuseIdentifier: OriginalCollectionCell.identifier)
   }
@@ -48,7 +48,7 @@ final class OriginalTableCell: UITableViewCell {
   }
   
   // MARK: - snapKitLayout
-  private func snpLayout() {
+  private func setupSNP() {
     
     contentView.snp.makeConstraints {
       $0.height.equalTo(370)

@@ -43,7 +43,7 @@ final class PreviewCollectionCell: UICollectionViewCell {
     
 //    addGesture()
     addSubViews()
-    snpLayout()
+    setupSNP()
     
   }
 //
@@ -63,7 +63,7 @@ final class PreviewCollectionCell: UICollectionViewCell {
     
   }
   
-  private func snpLayout() {
+  private func setupSNP() {
     preImageView.snp.makeConstraints {
       $0.top.equalToSuperview()
       $0.bottom.equalToSuperview()

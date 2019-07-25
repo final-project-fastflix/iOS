@@ -8,16 +8,57 @@
 
 import Foundation
 
-// MARK: - MovieElement
-struct MovieElement: Codable {
+enum RequestString: String {
+  case loginURL = "http://52.78.134.79/accounts/login/"
+  case movieURL = "http://52.78.134.79/movies/genre_select_before/"
+}
+
+// MARK: - Login
+struct Login: Codable {
+  let token: String
+  let subUserList: [SubUserList]
+  
+  enum CodingKeys: String, CodingKey {
+    case token
+    case subUserList = "sub_user_list"
+  }
+}
+
+// MARK: - SubUserList
+struct SubUserList: Codable {
   let id: Int
   let name: String
-  let videoFile, sampleVideoFile: JSONNull?
+  let kid: Bool
+  let parentUser: Int
+  
+  enum CodingKeys: String, CodingKey {
+    case id, name, kid
+    case parentUser = "parent_user"
+  }
+}
+
+// MARK: - RequestMovieElement
+struct RequestMovieElement: Codable {
+  let mainMovie: MainMovie
+  let listOfGenre: [String: [ListOfGenre]]
+  
+  enum CodingKeys: String, CodingKey {
+    case mainMovie = "메인 영화"
+    case listOfGenre = "장르별 영화리스트"
+  }
+}
+
+// MARK: - 메인영화
+struct MainMovie: Codable {
+  let id: Int
+  let name: String
+  let videoFile, sampleVideoFile, verticalSampleVideoFile: JSONNull?
   let productionDate, uploadedDate, synopsis, runningTime: String
   let viewCount: Int
   let logoImagePath: String
   let horizontalImagePath: String
-  let verticalImage, circleImage: JSONNull?
+  let verticalImage: String
+  let circleImage: JSONNull?
   let bigImagePath: String
   let degree: Degree
   let directors, actors, feature, author: [Degree]
@@ -27,6 +68,7 @@ struct MovieElement: Codable {
     case id, name
     case videoFile = "video_file"
     case sampleVideoFile = "sample_video_file"
+    case verticalSampleVideoFile = "vertical_sample_video_file"
     case productionDate = "production_date"
     case uploadedDate = "uploaded_date"
     case synopsis
@@ -47,7 +89,21 @@ struct Degree: Codable {
   let name: String
 }
 
-typealias Movie = [MovieElement]
+// MARK: - 장르별영화리스트
+struct ListOfGenre: Codable {
+  let id: Int
+  let name: String
+  let horizontalImagePath: String
+  let verticalImage: String
+  
+  enum CodingKeys: String, CodingKey {
+    case id, name
+    case horizontalImagePath = "horizontal_image_path"
+    case verticalImage = "vertical_image"
+  }
+}
+
+typealias RequestMovie = [RequestMovieElement]
 
 // MARK: - Encode/decode helpers
 

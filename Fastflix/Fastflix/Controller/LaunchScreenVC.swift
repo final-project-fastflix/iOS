@@ -20,7 +20,7 @@ final class LaunchScreenVC: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     print("splash")
-    autolayout()
+    
     // label의 알파를 천천히 바꾸는 거
 //    UIView.animate(withDuration: 0.5) { [weak imageView = self.imageView] in
 //      imageView?.alpha = 1
@@ -34,7 +34,12 @@ final class LaunchScreenVC: UIViewController {
     }
   }
   
-  func autolayout(){
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    setupSNP()
+  }
+  
+  func setupSNP(){
     view.addSubview(imageView)
 //    view.addSubview(label)
     

@@ -19,7 +19,7 @@ final class DetailCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = .clear
-        makeConstaints()
+        setupSNP()
     }
     
   func configure(imageName: String) {
@@ -27,7 +27,7 @@ final class DetailCollectionViewCell: UICollectionViewCell {
       detailImageView.contentMode = .scaleToFill
     }
     
-    private func makeConstaints() {
+    private func setupSNP() {
         self.addSubview(detailImageView)
         
         detailImageView.snp.makeConstraints {

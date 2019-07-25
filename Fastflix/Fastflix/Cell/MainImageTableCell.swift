@@ -36,9 +36,8 @@ final class MainImageTableCell: UITableViewCell {
     return image
   }()
   
-  private let movieDetailLabel: UILabel = {
+   let movieDetailLabel: UILabel = {
     let label = UILabel()
-    label.text = " 슈퍼히어로 ･ 왕실 ･ SF ･ 액션 ･ 할리우드 영화 ･ 어드벤처 "
     label.textColor = .white
     label.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
     return label
@@ -94,12 +93,12 @@ final class MainImageTableCell: UITableViewCell {
     self.backgroundColor = .clear
     setupStackView()
     addSubViews()
-    snpLayout()
+    setupSNP()
   }
   
-  func configure(imageURLString: String, logoImageURLString: String) {
-    let imageURL = URL(string: imageURLString)
-    let logoImageURL = URL(string: logoImageURLString)
+  func configure(imageURLString: String?, logoImageURLString: String?) {
+    let imageURL = URL(string: imageURLString ?? "ImagesData.shared.imagesUrl[5]")
+    let logoImageURL = URL(string: logoImageURLString ?? "ImagesData.shared.imagesUrl[6]")
     
     self.mainImage.kf.setImage(with: imageURL, options: [.processor(CroppingImageProcessor(size: CGSize(width: 414, height: 600))), .scaleFactor(UIScreen.main.scale)])
     self.logoImage.kf.setImage(with: logoImageURL, options: [.processor(DownsamplingImageProcessor(size: CGSize(width: 200, height: 200))), .cacheOriginalImage])
@@ -125,11 +124,13 @@ final class MainImageTableCell: UITableViewCell {
     insertSubview(blurImage, at: 2)
   }
   // snp
-  private func snpLayout() {
+  private func setupSNP() {
+    let appDelegate = AppDelegate.instance
+    
     mainImage.snp.makeConstraints {
       $0.left.right.bottom.equalToSuperview()
-      $0.top.equalToSuperview().offset(-44)
-      $0.height.equalTo(630)
+      $0.top.equalToSuperview().offset(-topPadding)
+      $0.height.equalTo(590)
     }
     
     logoImage.snp.makeConstraints {
@@ -164,7 +165,6 @@ final class MainImageTableCell: UITableViewCell {
   }
   
   @objc func pokeBtnDidTap(_ sender: UIButton) {
-    print("나온나")
     UIView.animate(withDuration: 0.3) {
       self.pokeButton.alpha = 0
     }

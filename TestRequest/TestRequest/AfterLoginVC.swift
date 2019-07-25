@@ -37,6 +37,9 @@ class AfterLoginVC: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     setupAutoLayout()
+    var number = 1234
+    test(&number)
+    print(number)
   }
   
   @objc func didTabBtn(_ sender: UIButton) {
@@ -64,6 +67,15 @@ class AfterLoginVC: UIViewController {
     getMovies.topAnchor.constraint(equalTo: logoutBtn.bottomAnchor, constant: 20).isActive = true
   }
   
+  
+  func test( _ num: inout Int) {
+    var resultArr: [Int] = []
+    while num > 0 {
+      resultArr.insert(num%10, at: 0)
+      num = num/10
+    }
+    print(resultArr)
+  }
   /*
    // MARK: - Navigation
    

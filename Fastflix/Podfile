@@ -7,7 +7,7 @@ target 'Fastflix' do
   
   pod 'SnapKit', '~> 5.0.0'
   pod 'Kingfisher'
-  pod 'Alamofire', '~> 5.0.0-beta.5'
+  pod 'Alamofire'
 
   # Pods for Fastflix
 

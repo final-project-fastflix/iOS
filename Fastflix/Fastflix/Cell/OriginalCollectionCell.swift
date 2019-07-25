@@ -23,7 +23,7 @@ final class OriginalCollectionCell: UICollectionViewCell {
     super.init(frame: frame)
     self.backgroundColor = .clear
     self.addSubview(originalImageView)
-    snpLayout()
+    setupSNP()
     
   }
   
@@ -31,7 +31,7 @@ final class OriginalCollectionCell: UICollectionViewCell {
     originalImageView.kf.setImage(with: URL(string: imageUrlString), options: [.processor(CroppingImageProcessor(size: CGSize(width: 170, height: 300))), .scaleFactor(UIScreen.main.scale)])
   }
   
-  private func snpLayout() {
+  private func setupSNP() {
     originalImageView.snp.makeConstraints {
       $0.top.equalToSuperview().offset(-25)
       $0.width.equalTo(170)

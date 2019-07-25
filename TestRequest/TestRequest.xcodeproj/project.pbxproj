@@ -9,18 +9,17 @@
 /* Begin PBXBuildFile section */
 		42160A246E2E82B53EF5C75E /* Pods_TestRequest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCCF10C26655015519480B1D /* Pods_TestRequest.framework */; };
 		525C48E522E221CB0082189A /* AfterLoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525C48E422E221CB0082189A /* AfterLoginVC.swift */; };
-		525C48E722E221DB0082189A /* BeforeLoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525C48E622E221DB0082189A /* BeforeLoginVC.swift */; };
 		5297E32B22DB1A4500850DD5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5297E32A22DB1A4500850DD5 /* AppDelegate.swift */; };
 		5297E33222DB1A4600850DD5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5297E33122DB1A4600850DD5 /* Assets.xcassets */; };
 		5297E33522DB1A4600850DD5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5297E33322DB1A4600850DD5 /* LaunchScreen.storyboard */; };
 		5297E33D22DB1A5C00850DD5 /* APICenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5297E33C22DB1A5C00850DD5 /* APICenter.swift */; };
 		5297E33F22DB1E4400850DD5 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5297E33E22DB1E4400850DD5 /* Data.swift */; };
+		C1FC3F3022E6F323008E1FE9 /* BeforeLoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FC3F2F22E6F323008E1FE9 /* BeforeLoginVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		31A9751DD87435E316741978 /* Pods-TestRequest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestRequest.debug.xcconfig"; path = "Target Support Files/Pods-TestRequest/Pods-TestRequest.debug.xcconfig"; sourceTree = "<group>"; };
 		525C48E422E221CB0082189A /* AfterLoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AfterLoginVC.swift; sourceTree = "<group>"; };
-		525C48E622E221DB0082189A /* BeforeLoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BeforeLoginVC.swift; path = ../../../../../../../System/Volumes/Data/Users/tass/tass/ForkiOS/iOS/TestRequest/TestRequest/BeforeLoginVC.swift; sourceTree = "<group>"; };
 		5297E32722DB1A4500850DD5 /* TestRequest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestRequest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5297E32A22DB1A4500850DD5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5297E33122DB1A4600850DD5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -29,6 +28,7 @@
 		5297E33C22DB1A5C00850DD5 /* APICenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICenter.swift; sourceTree = "<group>"; };
 		5297E33E22DB1E4400850DD5 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		64B09CBAC733078FEE38E59C /* Pods-TestRequest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestRequest.release.xcconfig"; path = "Target Support Files/Pods-TestRequest/Pods-TestRequest.release.xcconfig"; sourceTree = "<group>"; };
+		C1FC3F2F22E6F323008E1FE9 /* BeforeLoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeforeLoginVC.swift; sourceTree = "<group>"; };
 		CCCF10C26655015519480B1D /* Pods_TestRequest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestRequest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -68,7 +68,7 @@
 				5297E32A22DB1A4500850DD5 /* AppDelegate.swift */,
 				5297E33C22DB1A5C00850DD5 /* APICenter.swift */,
 				525C48E422E221CB0082189A /* AfterLoginVC.swift */,
-				525C48E622E221DB0082189A /* BeforeLoginVC.swift */,
+				C1FC3F2F22E6F323008E1FE9 /* BeforeLoginVC.swift */,
 				5297E33E22DB1E4400850DD5 /* Data.swift */,
 				5297E33122DB1A4600850DD5 /* Assets.xcassets */,
 				5297E33322DB1A4600850DD5 /* LaunchScreen.storyboard */,
@@ -212,7 +212,7 @@
 				525C48E522E221CB0082189A /* AfterLoginVC.swift in Sources */,
 				5297E33D22DB1A5C00850DD5 /* APICenter.swift in Sources */,
 				5297E33F22DB1E4400850DD5 /* Data.swift in Sources */,
-				525C48E722E221DB0082189A /* BeforeLoginVC.swift in Sources */,
+				C1FC3F3022E6F323008E1FE9 /* BeforeLoginVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

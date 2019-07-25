@@ -25,8 +25,11 @@ class MainCell: UITableViewCell {
     return label
   }()
   
-  func configure(url: [String], title: String) {
-    self.urls = url.map { URL(string: $0) }
+  func configure(url: [String]?, title: String?) {
+    let urlArr = url ?? imageUrls
+    let title = title ?? "title"
+    
+    self.urls = urlArr.map { URL(string: $0) }
     self.titleLabel.text = title
     self.backgroundColor = #colorLiteral(red: 0.07762928299, green: 0.07762928299, blue: 0.07762928299, alpha: 1)
   }
@@ -48,10 +51,10 @@ class MainCell: UITableViewCell {
     collectionView.showsHorizontalScrollIndicator = false
     collectionView.backgroundColor = #colorLiteral(red: 0.07762928299, green: 0.07762928299, blue: 0.07762928299, alpha: 1)
     collectionView.dataSource = self
-    setupAutoLayout()
+    setupSNP()
   }
   
-  private func setupAutoLayout() {
+  private func setupSNP() {
     
     contentView.snp.makeConstraints {
       $0.height.equalTo(220)
@@ -87,7 +90,7 @@ extension MainCell: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageCell.identifier, for: indexPath) as! ImageCell
     
-    cell.configure(url: urls![indexPath.row]!)
+    cell.configure(url: urls?[indexPath.row])
     
     return cell
   }
