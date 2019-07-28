@@ -10,6 +10,8 @@ import UIKit
 
 class ProfileSelectVC: UIViewController {
 
+  let subUserSingle = SubUserSingleton.shared
+  
   // 네이게이션뷰
   lazy var navigationView: UIView = {
     let view = UIView()
@@ -72,6 +74,10 @@ class ProfileSelectVC: UIViewController {
     return label
   }()
   
+  override var preferredStatusBarStyle: UIStatusBarStyle {
+    return .lightContent
+  }
+  
   var profileImageView1 = UserView()
   var profileImageView2 = UserView()
   var profileImageView3 = UserView()
@@ -84,16 +90,45 @@ class ProfileSelectVC: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    print("서브유저리스트:", subUserList)
-    print("numberOfUsers:", numberOfUsers)
     configure()
-    addSubViews()
     navigationBarSetting()
-    setFuntions()
+    
   }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+//    subUserList = nil
+//    numberOfUsers = nil
+//    subUserList = subUserSingle.subUserList
+//    numberOfUsers = subUserSingle.subUserList?.count
+    
+    print("싱글톤의 유저리스트 viewWillAppear:", subUserSingle.subUserList)
+    print("서브유저리스트 viewWillAppear:", subUserList)
+    print("numberOfUsers viewWillAppear:", numberOfUsers)
+    
+//    addSubViews()
+//    setFuntions()
+  }
+  
+//  override func viewWillLayoutSubviews() {
+//    super.viewWillLayoutSubviews()
+//    self.view.translatesAutoresizingMaskIntoConstraints = false
+//  }
+  
   
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
+    subUserList = nil
+    numberOfUsers = nil
+    subUserList = subUserSingle.subUserList
+    numberOfUsers = subUserSingle.subUserList?.count
+    addSubViews()
+    setFuntions()
+    
+    print("싱글톤의 유저리스트 viewDidAppear:", subUserSingle.subUserList)
+    print("서브유저리스트 viewDidAppear:", subUserList)
+    print("numberOfUsers viewDidAppear:", numberOfUsers)
+    
     setupSNP()
     setUserViews()
     setupProfileLayout()

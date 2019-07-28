@@ -10,6 +10,8 @@ import UIKit
 
 class LoginVC: UIViewController {
   
+  let subUserSingle = SubUserSingleton.shared
+  
   // 네이게이션뷰
   lazy var navigationView: UIView = {
     let view = UIView()
@@ -213,18 +215,21 @@ class LoginVC: UIViewController {
     guard let id = emailTextField.text, let pw = passwordField.text else { return }
     APICenter.shared.login(id: id, pw: pw) {
       switch $0 {
-      case .success(let value):
+      case .success(let subUsers):
         print("Login Success!!!")
-        print("value: ", value)
+        print("value: ", subUsers)
 
 //        DispatchQueue.main.async {
 //          AppDelegate.instance.checkLoginState()
 //        }
         
+        self.subUserSingle.subUserList = subUsers
+        
         let profileSelectVC = ProfileSelectVC()
         let navi = UINavigationController(rootViewController: profileSelectVC)
-        profileSelectVC.numberOfUsers = value.count
-        profileSelectVC.subUserList = value
+        
+//        profileSelectVC.numberOfUsers = subUsers.count
+//        profileSelectVC.subUserList = subUsers
         
         self.present(navi, animated: false)
         
