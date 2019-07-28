@@ -10,6 +10,8 @@ import UIKit
 
 class ProfileChangeVC: UIViewController {
 
+  let subUserSingle = SubUserSingleton.shared
+  
   // 네이게이션뷰
   lazy var navigationView: UIView = {
     let view = UIView()
@@ -23,7 +25,7 @@ class ProfileChangeVC: UIViewController {
   // 프로필관리 레이블(edit할때 나타나는 label)
   let profileChangeLabel: UILabel = {
     let label = UILabel()
-    label.text = "프로필 변경"
+//    label.text = "프로필 변경"
     label.textAlignment = .center
     label.textColor = .white
     label.font = UIFont.systemFont(ofSize: 17)
@@ -102,6 +104,8 @@ class ProfileChangeVC: UIViewController {
   
   var userImage: UIImage?
   
+  var isUserCreating: Bool?
+  
   override var preferredStatusBarStyle: UIStatusBarStyle {
     return .lightContent
   }
@@ -128,6 +132,7 @@ class ProfileChangeVC: UIViewController {
     userView.profileUserName = "변경"
     subUserNameTextField.text = userName ?? ""
     userView.imageView.image = userImage ?? UIImage(named: "profile1")
+    profileChangeLabel.text = isUserCreating == false ? "프로필 변경" : "프로필 만들기"
     subUserNameTextField.delegate = self
   }
   
@@ -202,8 +207,28 @@ class ProfileChangeVC: UIViewController {
   }
   
   private func saveChangedUserInfo() {
+    guard let name = subUserNameTextField.text else { return }
+    let kid = kidsSwitchButton.isOn ? true : false
     
-    
+    if isUserCreating! {
+      APICenter.shared.createSubUser(name: name, kid: kid) {
+        switch $0 {
+        case .success(let subUsers):
+          print("User Creating Success!!!")
+          print("value: ", subUsers)
+          
+          self.subUserSingle.subUserList = subUsers
+//          profileSelectVC.numberOfUsers = value.count
+//          profileSelectVC.subUserList = value
+          
+//          self.dismiss(animated: true, completion: {
+//          })
+          
+        case .failure(let err):
+          print("fail to login, reason: ", err)
+        }
+      }
+    }
     
     
   }
@@ -219,8 +244,7 @@ class ProfileChangeVC: UIViewController {
     
     alert(title: "프로필 삭제", message: "이 프로필을 삭제하시겠어요?") {
       //프로필 삭제시 - 클로저로 기능 구현 코드 넣어야 함
-      
-      
+  
     }
     
     //삭제버튼 눌렀을때 Alert화면 구현

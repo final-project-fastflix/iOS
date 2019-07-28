@@ -37,7 +37,7 @@ typealias ProfileImage = [String: [ProfileImageElement]]
 // MARK: - Login
 struct Login: Codable {
   let token: String
-  let subUserList: [SubUserList]
+  let subUserList: [SubUser]
   
   enum CodingKeys: String, CodingKey {
     case token
@@ -45,8 +45,8 @@ struct Login: Codable {
   }
 }
 
-struct SubUser: Codable {
-  let subUserList: [SubUserList]
+struct SubUserList: Codable {
+  let subUserList: [SubUser]
   
   enum CodingKeys: String, CodingKey {
     case subUserList = "sub_user_list"
@@ -54,7 +54,7 @@ struct SubUser: Codable {
 }
 
 // MARK: - SubUserList
-struct SubUserList: Codable {
+struct SubUser: Codable {
   let id: Int
   let profileInfo: ProfileInfo
   let name: String
