@@ -80,7 +80,7 @@ class ProfileSelectVC: UIViewController {
   var addProfileView = AddProfileView()
   
   var numberOfUsers: Int?
-  var subUserList: [SubUserList]?
+  var subUserList: [SubUser]?
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -180,27 +180,21 @@ class ProfileSelectVC: UIViewController {
     
     switch numberOfUsers {
     case 1:
-      profileImageView2.isHidden = true
-      profileImageView3.isHidden = true
-      profileImageView4.isHidden = true
-      profileImageView5.isHidden = true
+      [ profileImageView2, profileImageView3, profileImageView4, profileImageView5 ].forEach { $0.isHidden = true }
       addProfileView.snp.makeConstraints {
         $0.width.equalTo(UIScreen.main.bounds.width * 0.32)
         $0.centerX.equalToSuperview().offset(70)
         $0.top.equalTo(introlabel.snp.bottom).offset(UIScreen.main.bounds.height * 0.03)
       }
     case 2:
-      profileImageView3.isHidden = true
-      profileImageView4.isHidden = true
-      profileImageView5.isHidden = true
+      [ profileImageView3, profileImageView4, profileImageView5 ].forEach { $0.isHidden = true }
       addProfileView.snp.makeConstraints {
         $0.width.equalTo(UIScreen.main.bounds.width * 0.32)
         $0.centerX.equalToSuperview()
         $0.top.equalTo(profileImageView1.snp.bottom).offset(UIScreen.main.bounds.height * 0.03)
       }
     case 3:
-      profileImageView4.isHidden = true
-      profileImageView5.isHidden = true
+      [ profileImageView4, profileImageView5 ].forEach { $0.isHidden = true }
       addProfileView.snp.makeConstraints {
         $0.width.equalTo(UIScreen.main.bounds.width * 0.32)
         $0.centerX.equalToSuperview().offset(70)
@@ -298,7 +292,7 @@ extension ProfileSelectVC: UserViewDelegate {
     let profileChangeVC = ProfileChangeVC()
     profileChangeVC.userName = userName
     profileChangeVC.userImage = userImage
-    
+    profileChangeVC.isUserCreating = false
     let navi = UINavigationController(rootViewController: profileChangeVC)
     navigationController?.present(navi, animated: true)
   }
@@ -321,6 +315,7 @@ extension ProfileSelectVC: AddProfileViewDelegate {
   func addProfileButtonTapped() {
     let profileChangeVC = ProfileChangeVC()
     profileChangeVC.userName = ""
+    profileChangeVC.isUserCreating = true
     let navi = UINavigationController(rootViewController: profileChangeVC)
     navigationController?.present(navi, animated: true)
   

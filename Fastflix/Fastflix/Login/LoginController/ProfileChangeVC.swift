@@ -23,7 +23,7 @@ class ProfileChangeVC: UIViewController {
   // 프로필관리 레이블(edit할때 나타나는 label)
   let profileChangeLabel: UILabel = {
     let label = UILabel()
-    label.text = "프로필 변경"
+//    label.text = "프로필 변경"
     label.textAlignment = .center
     label.textColor = .white
     label.font = UIFont.systemFont(ofSize: 17)
@@ -102,6 +102,8 @@ class ProfileChangeVC: UIViewController {
   
   var userImage: UIImage?
   
+  var isUserCreating: Bool?
+  
   override var preferredStatusBarStyle: UIStatusBarStyle {
     return .lightContent
   }
@@ -128,6 +130,7 @@ class ProfileChangeVC: UIViewController {
     userView.profileUserName = "변경"
     subUserNameTextField.text = userName ?? ""
     userView.imageView.image = userImage ?? UIImage(named: "profile1")
+    profileChangeLabel.text = isUserCreating == false ? "프로필 변경" : "프로필 만들기"
     subUserNameTextField.delegate = self
   }
   
@@ -202,8 +205,14 @@ class ProfileChangeVC: UIViewController {
   }
   
   private func saveChangedUserInfo() {
+    guard let name = subUserNameTextField.text else { return }
+    let kid = kidsSwitchButton.isOn ? 1 : 0
     
-    
+    if isUserCreating! {
+      APICenter.shared.createSubUser(name: name, kid: kid) { (result) in
+        
+      }
+    }
     
     
   }

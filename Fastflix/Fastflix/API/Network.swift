@@ -63,7 +63,7 @@ final class APICenter {
 
   
   // MARK: 로그인 메서드 -> 토큰값 저장 및 컴플리션에 서브유저 배열 넘기기
-  func login(id: String, pw: String, completion: @escaping (Result<[SubUserList]>) -> ()) {
+  func login(id: String, pw: String, completion: @escaping (Result<[SubUser]>) -> ()) {
     
     let parameters =
       [
@@ -133,7 +133,7 @@ final class APICenter {
 
   
   // MARK: 서브유저 생성
-  func createSubUser(name: String, kid: String, completion: @escaping (Result<[SubUserList]>) -> ()) {
+  func createSubUser(name: String, kid: String, completion: @escaping (Result<[SubUser]>) -> ()) {
     
     let token = getToken()
     
@@ -161,7 +161,7 @@ final class APICenter {
           guard let data = res.data else {
             completion(.failure(ErrorType.NoData))
             return }
-          guard let origin = try? JSONDecoder().decode(SubUser.self, from: data) else {
+          guard let origin = try? JSONDecoder().decode(SubUserList.self, from: data) else {
             completion(.failure(ErrorType.NoData))
             return }
           let subUserArr = origin.subUserList

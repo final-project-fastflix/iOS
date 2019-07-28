@@ -63,6 +63,7 @@ class LoginVC: UIViewController {
     tf.spellCheckingType = .no
     tf.keyboardType = .emailAddress
     tf.addTarget(self, action: #selector(editingChanged(_:)), for: .editingChanged)
+    tf.keyboardAppearance = .dark
     return tf
   }()
   
@@ -80,6 +81,7 @@ class LoginVC: UIViewController {
     tf.isSecureTextEntry = true
     tf.clearsOnBeginEditing = false
     tf.addTarget(self, action: #selector(editingChanged(_:)), for: .editingChanged)
+    tf.keyboardAppearance = .dark
     return tf
   }()
   
