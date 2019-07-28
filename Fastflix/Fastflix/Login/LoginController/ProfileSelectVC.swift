@@ -10,6 +10,8 @@ import UIKit
 
 class ProfileSelectVC: UIViewController {
 
+  let subUserSingle = SubUserSingleton.shared
+  
   // 네이게이션뷰
   lazy var navigationView: UIView = {
     let view = UIView()
@@ -72,6 +74,10 @@ class ProfileSelectVC: UIViewController {
     return label
   }()
   
+  override var preferredStatusBarStyle: UIStatusBarStyle {
+    return .lightContent
+  }
+  
   var profileImageView1 = UserView()
   var profileImageView2 = UserView()
   var profileImageView3 = UserView()
@@ -80,20 +86,49 @@ class ProfileSelectVC: UIViewController {
   var addProfileView = AddProfileView()
   
   var numberOfUsers: Int?
-  var subUserList: [SubUserList]?
+  var subUserList: [SubUser]?
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    print("서브유저리스트:", subUserList)
-    print("numberOfUsers:", numberOfUsers)
     configure()
-    addSubViews()
     navigationBarSetting()
-    setFuntions()
+    
   }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+//    subUserList = nil
+//    numberOfUsers = nil
+//    subUserList = subUserSingle.subUserList
+//    numberOfUsers = subUserSingle.subUserList?.count
+    
+    print("싱글톤의 유저리스트 viewWillAppear:", subUserSingle.subUserList)
+    print("서브유저리스트 viewWillAppear:", subUserList)
+    print("numberOfUsers viewWillAppear:", numberOfUsers)
+    
+//    addSubViews()
+//    setFuntions()
+  }
+  
+//  override func viewWillLayoutSubviews() {
+//    super.viewWillLayoutSubviews()
+//    self.view.translatesAutoresizingMaskIntoConstraints = false
+//  }
+  
   
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
+    subUserList = nil
+    numberOfUsers = nil
+    subUserList = subUserSingle.subUserList
+    numberOfUsers = subUserSingle.subUserList?.count
+    addSubViews()
+    setFuntions()
+    
+    print("싱글톤의 유저리스트 viewDidAppear:", subUserSingle.subUserList)
+    print("서브유저리스트 viewDidAppear:", subUserList)
+    print("numberOfUsers viewDidAppear:", numberOfUsers)
+    
     setupSNP()
     setUserViews()
     setupProfileLayout()
@@ -180,27 +215,21 @@ class ProfileSelectVC: UIViewController {
     
     switch numberOfUsers {
     case 1:
-      profileImageView2.isHidden = true
-      profileImageView3.isHidden = true
-      profileImageView4.isHidden = true
-      profileImageView5.isHidden = true
+      [ profileImageView2, profileImageView3, profileImageView4, profileImageView5 ].forEach { $0.isHidden = true }
       addProfileView.snp.makeConstraints {
         $0.width.equalTo(UIScreen.main.bounds.width * 0.32)
         $0.centerX.equalToSuperview().offset(70)
         $0.top.equalTo(introlabel.snp.bottom).offset(UIScreen.main.bounds.height * 0.03)
       }
     case 2:
-      profileImageView3.isHidden = true
-      profileImageView4.isHidden = true
-      profileImageView5.isHidden = true
+      [ profileImageView3, profileImageView4, profileImageView5 ].forEach { $0.isHidden = true }
       addProfileView.snp.makeConstraints {
         $0.width.equalTo(UIScreen.main.bounds.width * 0.32)
         $0.centerX.equalToSuperview()
         $0.top.equalTo(profileImageView1.snp.bottom).offset(UIScreen.main.bounds.height * 0.03)
       }
     case 3:
-      profileImageView4.isHidden = true
-      profileImageView5.isHidden = true
+      [ profileImageView4, profileImageView5 ].forEach { $0.isHidden = true }
       addProfileView.snp.makeConstraints {
         $0.width.equalTo(UIScreen.main.bounds.width * 0.32)
         $0.centerX.equalToSuperview().offset(70)
@@ -298,7 +327,7 @@ extension ProfileSelectVC: UserViewDelegate {
     let profileChangeVC = ProfileChangeVC()
     profileChangeVC.userName = userName
     profileChangeVC.userImage = userImage
-    
+    profileChangeVC.isUserCreating = false
     let navi = UINavigationController(rootViewController: profileChangeVC)
     navigationController?.present(navi, animated: true)
   }
@@ -321,6 +350,7 @@ extension ProfileSelectVC: AddProfileViewDelegate {
   func addProfileButtonTapped() {
     let profileChangeVC = ProfileChangeVC()
     profileChangeVC.userName = ""
+    profileChangeVC.isUserCreating = true
     let navi = UINavigationController(rootViewController: profileChangeVC)
     navigationController?.present(navi, animated: true)
   

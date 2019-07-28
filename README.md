@@ -76,3 +76,5 @@ teamMembers: 권혁태(tass), 홍원표(allen), 전혜지(devy)
 19.07.28  feat: devy - add SearchVC, SearchView, SearchCell
 
 19.07.28  feat: tass - request(ing)
+
+19.07.29  feat: allen - singleton for Subuserlist, and creating a Subuser request is fixed.
