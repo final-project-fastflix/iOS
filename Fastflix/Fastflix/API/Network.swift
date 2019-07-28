@@ -87,6 +87,31 @@ final class APICenter {
     return token
   }
   
+  func getMainImgCellData(completion: @escaping (Result<MainImgCellData>) -> ()) {
+    let header = getHeader(needSubuser: true)
+    
+    let req = Alamofire.request(RequestString.getMainImgURL.rawValue, method: .get, headers: header)
+    
+    req.response(queue: .global()) { (res) in
+      guard res.error == nil else {
+        completion(.failure(ErrorType.networkError))
+        return
+      }
+      
+      guard let data = res.data else {
+        completion(.failure(ErrorType.NoData))
+        return
+      }
+      
+      guard let result = try? JSONDecoder().decode(MainImgCellData.self, from: data) else {
+        completion(.failure(ErrorType.FailToParsing))
+        return
+      }
+      
+      completion(.success(result))
+    }
+  }
+  
   // MARK: (토큰값 및 서브유저아이디로)영화 데이터 받기
   func getMovieData(completion: @escaping (Result<RequestMovie>) -> ()) {
     //    RequestMovie.self
