@@ -163,6 +163,43 @@ class APICenter {
       }.resume()
   }
   
+  func getMainCellData() {
+    let url = "http://52.78.134.79/movies/"
+    
+    let header = [
+      "Authorization": "Token 58ed2cf80bc30631a6315b8c557edb7395f03207",
+      "subuserid": "11"
+    ]
+    
+    let req = Alamofire.request(url, method: .get, headers: header)
+    
+    req.response(queue: .global()) { (res) in
+      guard let data = res.data else { return }
+      guard let result = try? JSONDecoder().decode(Test.self, from: data) else {
+        print("FailToParsing")
+        return }
+      
+      print(result)
+    }
+  }
+  
+  
+  func changeProfile() {
+    let url = "http://52.78.134.79/accounts/change_profile/"
+    
+    let header = [
+      "Authorization": "Token 58ed2cf80bc30631a6315b8c557edb7395f03207"
+    ]
+    
+    let profileRequest = Alamofire.request(url, method: .get, headers: header)
+    
+    profileRequest.response(queue: .global()) { (res) in
+      guard let data = res.data else { return }
+      let result = try? JSONDecoder().decode(ProfileImage.self, from: data)
+      print("result: ", result)
+    }
+  }
+  
   
 //  func request() {
 //

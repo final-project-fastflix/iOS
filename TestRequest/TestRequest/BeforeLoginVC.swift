@@ -25,6 +25,7 @@ class BeforeLoginVC: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     setupAutoLayout()
+    APICenter.shared.getMainCellData()
   }
   
   @objc func didTabBtn(_ sender: UIButton) {

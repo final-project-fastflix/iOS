@@ -5,6 +5,21 @@
 
 import Foundation
 
+
+// MARK: - ProfileImageElement
+struct ProfileImageElement: Codable {
+  let name: String
+  let imagePath: String
+  
+  enum CodingKeys: String, CodingKey {
+    case name
+    case imagePath = "image_path"
+  }
+}
+
+typealias ProfileImage = [String: [ProfileImageElement]]
+
+
 // MARK: - RequestMovieElement
 struct RequestMovieElement: Codable {
   let mainMovie: MainMovie
@@ -16,21 +31,34 @@ struct RequestMovieElement: Codable {
   }
 }
 
+// MARK: - ProfileImageElement
+struct TestTest: Codable {
+  let mainMovie: MainMovie
+  
+  enum CodingKeys: String, CodingKey {
+    case mainMovie = "메인 영화"
+  }
+}
+
+typealias Test = [TestTest]
+
 // MARK: - 메인영화
 struct MainMovie: Codable {
   let id: Int
-  let name: String
-  let videoFile, sampleVideoFile, verticalSampleVideoFile: JSONNull?
+  let name, videoFile: String
+  let sampleVideoFile, verticalSampleVideoFile: JSONNull?
   let productionDate, uploadedDate, synopsis, runningTime: String
-  let viewCount: Int
+  let viewCount, likeCount: Int
   let logoImagePath: String
   let horizontalImagePath: String
-  let verticalImage, circleImage: JSONNull?
+  let verticalImage: String
+  let circleImage: JSONNull?
   let bigImagePath: String
+  let created: String
   let degree: Degree
-  let directors, actors, feature: [Degree]
+  let directors, actors, feature: [Actor]
   let author: [JSONAny]
-  let genre: [Degree]
+  let genre: [Actor]
   
   enum CodingKeys: String, CodingKey {
     case id, name
@@ -42,19 +70,32 @@ struct MainMovie: Codable {
     case synopsis
     case runningTime = "running_time"
     case viewCount = "view_count"
+    case likeCount = "like_count"
     case logoImagePath = "logo_image_path"
     case horizontalImagePath = "horizontal_image_path"
     case verticalImage = "vertical_image"
     case circleImage = "circle_image"
     case bigImagePath = "big_image_path"
-    case degree, directors, actors, feature, author, genre
+    case created, degree, directors, actors, feature, author, genre
   }
+}
+
+// MARK: - Actor
+struct Actor: Codable {
+  let id: Int
+  let name: String
 }
 
 // MARK: - Degree
 struct Degree: Codable {
   let id: Int
   let name: String
+  let degreeImagePath: String
+  
+  enum CodingKeys: String, CodingKey {
+    case id, name
+    case degreeImagePath = "degree_image_path"
+  }
 }
 
 // MARK: - 장르별영화리스트

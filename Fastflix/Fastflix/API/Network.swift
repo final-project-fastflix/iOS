@@ -14,7 +14,69 @@ final class APICenter {
   static let shared = APICenter()
   
   // MARK: 유저디폴트 객체
-  let path = UserDefaults.standard
+  private let path = UserDefaults.standard
+  
+  private var token: String {
+    return getToken()
+  }
+  
+  private var subUserID: Int {
+    return getSubUserID()
+  }
+  
+  
+  
+  
+  
+  
+  // MARK: - 필요한 헤더를 가져옴
+  private func getHeader(needSubuser: Bool) -> ([String: String]) {
+    
+    let withSubuser = [
+      "Authorization": "Token \(token)",
+      "subuserid": "\(subUserID)"
+    ]
+    
+    let withOutSubuser = [
+      "Authorization": "Token \(token)"
+    ]
+    
+    switch needSubuser {
+    case true:
+      return withSubuser
+    case false:
+      return withOutSubuser
+    }
+  }
+  
+  
+  
+  
+  
+  // MARK: - 프로필사진들 가져오기
+  func changeProfileImage(completion: @escaping (Result<ProfileImage>) -> ()) {
+    let header = getHeader(needSubuser: false)
+    
+    let req = Alamofire.request(RequestString.changeProfileListURL.rawValue, method: .get, headers: header)
+    
+    req.response(queue: .global()) { (res) in
+      guard res.error == nil else {
+        completion(.failure(ErrorType.networkError))
+        return }
+      
+      guard let data = res.data else {
+        completion(.failure(ErrorType.NoData))
+        return
+      }
+      
+      guard let result = try? JSONDecoder().decode(ProfileImage.self, from: data) else {
+        completion(.failure(ErrorType.FailToParsing))
+        return
+      }
+      
+      completion(.success(result))
+    }
+  }
   
   // MARK: 유저디폴트에 저장된 토큰값 가져오기
   private func getToken() -> String {
@@ -25,15 +87,35 @@ final class APICenter {
     return token
   }
   
+  func getMainImgCellData(completion: @escaping (Result<MainImgCellData>) -> ()) {
+    let header = getHeader(needSubuser: true)
+    
+    let req = Alamofire.request(RequestString.getMainImgURL.rawValue, method: .get, headers: header)
+    
+    req.response(queue: .global()) { (res) in
+      guard res.error == nil else {
+        completion(.failure(ErrorType.networkError))
+        return
+      }
+      
+      guard let data = res.data else {
+        completion(.failure(ErrorType.NoData))
+        return
+      }
+      
+      guard let result = try? JSONDecoder().decode(MainImgCellData.self, from: data) else {
+        completion(.failure(ErrorType.FailToParsing))
+        return
+      }
+      
+      completion(.success(result))
+    }
+  }
+  
   // MARK: (토큰값 및 서브유저아이디로)영화 데이터 받기
   func getMovieData(completion: @escaping (Result<RequestMovie>) -> ()) {
-//    RequestMovie.self
-    let token = getToken()
-    let subUserID = getSubUserID()
-    let headers = [
-      "Authorization": "Token \(token)",
-      "subuserid": "\(subUserID)"
-    ]
+    //    RequestMovie.self
+    let headers = getHeader(needSubuser: true)
     
     let request = Alamofire.request(RequestString.movieURL.rawValue, method: .get, headers: headers)
     
@@ -43,24 +125,12 @@ final class APICenter {
         return }
       guard let resultData = try? JSONDecoder().decode(RequestMovie.self, from: data) else {
         completion(.failure(ErrorType.FailToParsing))
-        print("data: ", data as? [String])
+//        print("data: ", data as? [String])
         return }
       completion(.success(resultData))
     }
-    
-//    request.responseJSON(queue: .global()) {
-//      switch $0.result {
-//      case .success(_):
-//        guard let data = $0.data else { return }
-//        guard let resultData = try? JSONDecoder().decode(RequestMovie.self, from: data) else { return completion(.failure(ErrorType.FailToParsing)) }
-//        completion(.success(resultData))
-//      case .failure(let err):
-//        completion(.failure(ErrorType.networkError))
-//      }
-//    }
-    
   }
-
+  
   
   // MARK: 로그인 메서드 -> 토큰값 저장 및 컴플리션에 서브유저 배열 넘기기
   func login(id: String, pw: String, completion: @escaping (Result<[SubUser]>) -> ()) {
@@ -81,7 +151,7 @@ final class APICenter {
       switch $0 {
       case .success(let upload, _, _):
         upload.responseJSON { (res) in
-//          print("run", res.data as? [String: String])
+          //          print("run", res.data as? [String: String])
           guard let data = res.data else {
             completion(.failure(ErrorType.NoData))
             return }
@@ -124,28 +194,24 @@ final class APICenter {
     path.set(id, forKey: "subUserID")
     print("'subUserID' save complete ")
   }
-
+  
   // MARK: 유저디폴트에 현재 저장된 서브유저 아이디 지우기
   func deleteCurrentSubUserID() {
     path.removeObject(forKey: "subUserID")
     print("'subUserID' is deleted")
   }
-
+  
   
   // MARK: 서브유저 생성
   func createSubUser(name: String, kid: String, completion: @escaping (Result<[SubUser]>) -> ()) {
     
-    let token = getToken()
-    
-    let headers = [
-      "Authorization": "Token \(token)"
-    ]
+    let headers = getHeader(needSubuser: false)
     
     let parameters =
       [
         "name": name,
         "kid": kid
-        ]
+    ]
     
     Alamofire.upload(multipartFormData: {
       MultipartFormData in
@@ -177,8 +243,6 @@ final class APICenter {
       }
     }
   }
-  
-  
   
   
   
